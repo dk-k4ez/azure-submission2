@@ -32,28 +32,30 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 
 <!DOCTYPE html>
 <html>
- <head>
- <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Analisis Gambar</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+	<title>Analisis Gambar</title>
 
-    <!-- CSS -->
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
 
-    <!-- Custom styles -->
-    <link href="starter-template.css" rel="stylesheet">
-  </head>
+	<!-- CSS -->
+	<link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles -->
+	<link href="starter-template.css" rel="stylesheet">
+</head>
+
 <body>
-		<main role="main" class="container">
-    		<div class="starter-template"> <br><br><br>
-        		<h1>Analisis Gambar</h1>
-				<p class="lead"><br> Klik <b>Browse</b>, untuk memilih foto yang akan di analisis. Lalu klik <b>Upload</b>.<br><b>Note</b>: Analisa gambar menggunakan API dari Azure Computer Vision<br><br><br><b></b></p>
+	<main role="main" class="container">
+		<div class="starter-template"> <br><br><br>
+			<h1>Analisis Gambar</h1>
+			<p class="lead"><br> Klik <b>Browse</b>, untuk memilih foto yang akan di analisis. Lalu klik <b>Upload</b>.<br><b>Note</b>: Analisa gambar menggunakan API dari Azure Computer Vision<br><br><br><b></b></p>
 
-				<span class="border-top my-3"></span>
-			</div>
+			<span class="border-top my-3"></span>
+		</div>
 		<div class="mt-4 mb-2">
 			<form class="d-flex justify-content-lefr" action="index.php" method="post" enctype="multipart/form-data">
 				<input type="file" name="fileToUpload" accept=".jpeg,.jpg,.png,.gif,.bmp" required="">
@@ -62,7 +64,7 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 		</div>
 		<br>
 		<br>
-		<h4>Total Files : <?php echo sizeof($result->getBlobs())?></h4>
+		<h4>Total Files : <?php echo sizeof($result->getBlobs()) ?></h4>
 		<table class='table table-hover'>
 			<thead>
 				<tr>
@@ -74,33 +76,35 @@ $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 			<tbody>
 				<?php
 				do {
-					foreach ($result->getBlobs() as $blob)
-					{
-						?>
+					foreach ($result->getBlobs() as $blob) {
+				?>
 						<tr>
 							<td><?php echo $blob->getName() ?></td>
 							<td><?php echo $blob->getUrl() ?></td>
 							<td>
 								<form action="computervision.php" method="post">
-									<input type="hidden" name="url" value="<?php echo $blob->getUrl()?>">
+									<input type="hidden" name="url" value="<?php echo $blob->getUrl() ?>">
 									<input type="submit" name="submit" value="Analyze!" class="btn btn-success">
 								</form>
 							</td>
 						</tr>
-						<?php
+				<?php
 					}
 					$listBlobsOptions->setContinuationToken($result->getContinuationToken());
-				} while($result->getContinuationToken());
+				} while ($result->getContinuationToken());
 				?>
 			</tbody>
 		</table>
 
-	</div>
+		</div>
 
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
-    <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
-  </body>
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script>
+			window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+		</script>
+		<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
+		<script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+</body>
+
 </html>
