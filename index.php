@@ -8,7 +8,7 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=dkwebapp;AccountKey=DgQl8rYyx82BN96N8w/eu88qdfUFkWkeV2OI4jWDgwTFqjSogodvqwbP+anRof2GPxMujBEnC4PzmgDTpfgvLg==";
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=<YourStorageName>;AccountKey=<YourStorageKeys>";
 $containerName = "dk-k4ez";
 
 // Create blob client.
